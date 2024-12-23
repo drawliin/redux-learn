@@ -1,19 +1,20 @@
 import { DECREMENT, INC_BY_VALUE, INCREMENT } from "./types"
 
-export const incrementAction = () => {
-    return {
+export const incrementAction = async (dispatch) => {
+    return dispatch({
         type: INCREMENT
-    }
+    })
 }
 
-export const decrementAction = () => {
-    return {
+export const decrementAction = (dispatch) => {
+    return dispatch({
         type: DECREMENT
-    }
+    })
 } 
 
-export const incrementByValueAction = () => {
-    return {
-        type: INC_BY_VALUE
-    }
+export const incrementByValueAction = (vl, dispatch) => {
+    return dispatch({
+        type: INC_BY_VALUE,
+        payload: vl
+    })
 }

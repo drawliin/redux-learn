@@ -1,31 +1,46 @@
 import React from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { decrementAction, incrementAction, incrementByValueAction } from '../redux/actions/counterActions';
-import { INC_BY_VALUE } from '../redux/actions/types';
+import {increment, decrement, incrementByAmount} from '../redux/reducers/counterReducer'
 
 export default function Counter() {
     
-    const countState = useSelector(state => state.count);
+    const countState = useSelector(state => state.counter.count);
     const dispatch = useDispatch();
 
 
 
+    // const handleIncrement = () => {
+
+    //     incrementAction(dispatch)
+    // }
+
+    // const handleDecrement = () => {
+    //     decrementAction(dispatch)
+    // }
+
+    // const handleIncByValue = (vl) => {
+    //     incrementByValueAction(vl, dispatch)
+    // }
+    // return (
+    //     <div>
+    //         <p>{countState}</p>
+    //         <button onClick = {handleIncrement}>Increment</button>
+    //         <button onClick = {handleDecrement}>Decrement</button>
+    //         <button onClick = {() => handleIncByValue(3)}>Increment By Value</button>
+    //     </div>
+    // )
+    
+
+
     const handleIncrement = () => {
-        //setCount(count + 1);
-
-        dispatch(incrementAction());
+        dispatch(increment())
     }
-
     const handleDecrement = () => {
-        //setCount(count - 1);
-        dispatch(decrementAction());
+        dispatch(decrement())
     }
-
-    const handleIncByValue = (vl) => {
-        dispatch({
-            type: INC_BY_VALUE,
-            payload: vl
-        })
+    const handleIncByAmount = (vl) => {
+        dispatch(incrementByAmount(vl))
     }
 
     
@@ -35,7 +50,7 @@ export default function Counter() {
             <p>{countState}</p>
             <button onClick = {handleIncrement}>Increment</button>
             <button onClick = {handleDecrement}>Decrement</button>
-            <button onClick = {() => handleIncByValue(3)}>Increment By Value</button>
+            <button onClick={() => handleIncByAmount(5)}>Increment By Value</button>
         </div>
     )
 }
